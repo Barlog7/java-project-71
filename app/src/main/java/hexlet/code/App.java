@@ -3,32 +3,32 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+import hexlet.code.Differ;
+
+import java.util.concurrent.Callable;
+
+import static hexlet.code.Differ.generate;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
-public class App {
-/*    @Option(names={"-h", "--help"}, description="Display help/usage.", help=true)
-    boolean help;
-    @Option(names={"-V", "--version"}, description="Print version information and exit.", required=true)
-    private String fileName;*/
-    /*@Option(names = { "-h", "--help" }, usageHelp = true, description = "display a help message")
-    private boolean helpRequested = false;*/
-    /*@Option(names = {"-h", "--help"}, usageHelp = true,
-        description = "Print usage help and exit.")
-    boolean usageHelpRequested;
+public class App implements Callable<Integer> {
 
-    @Option(names = {"-V", "--version"}, versionHelp = true,
-            description = "Print version information and exit.")
-    boolean versionHelpRequested;*/
 
-    @Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
+    @Parameters(index = "0", paramLabel="filepath1", description = "path to first file")
+    String filepath1;
+
+    @Parameters(index = "1", paramLabel="filepath2", description = "path to second file")
+    String filepath2;
+
+    @Option(names = {"-f", "--format"}, paramLabel="format", description = "output format [default: stylish]")
+    String format;
+
+    /*@Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
     boolean versionInfoRequested;
 
     @Option(names = {"-h", "--help"}, usageHelp = true, description = "Show this help message and exit.")
-    boolean usageHelpRequested;
+    boolean usageHelpRequested;*/
 
-    /*@Command(name = "checksum", mixinStandardHelpOptions = true, version = "checksum 4.0",
-            description = "Prints the checksum (SHA-256 by default) of a file to STDOUT.")*/
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
@@ -45,6 +45,12 @@ public class App {
         }*/
         int exitCode = new CommandLine(new App()).execute(args);
         System.exit(exitCode);
-        System.out.println("Hello World End");
+        //System.out.println("Hello World End");
+    }
+
+    @Override
+    public Integer call() throws Exception {
+        generate(filepath1, filepath2);
+        return null;
     }
 }
