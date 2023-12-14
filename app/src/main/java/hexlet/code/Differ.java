@@ -33,7 +33,7 @@ public class Differ {
         //String returnString = result.entrySet().stream().flatMap(y -> y).collect(Collectors.joining(" "));
         //String returnString = StringUtils.join(result);
         String returnString = mapToString(result);
-        System.out.println(returnString);
+        //System.out.println(returnString);
         return  returnString;
     }
     public static Map getData(String filePath, ObjectMapper mapper) throws Exception {
@@ -43,7 +43,7 @@ public class Differ {
         }
         Map<String, String> mapJson = mapper.readValue(new File(filePath), Map.class);
 
-        System.out.println(mapJson);
+        //System.out.println(mapJson);
         return mapJson;
     }
     public static Map createResult(Map map1, Map map2) {
@@ -53,9 +53,9 @@ public class Differ {
         var itemsUnion = CollectionUtils.union(items1, items2);
         //
         var itemsSorted = itemsUnion.stream().sorted().toList();
-        System.out.println(itemsSorted);
+        //System.out.println(itemsSorted);
         for (var key : itemsSorted) {
-            System.out.println(key);
+            //System.out.println(key);
             if (!map1.containsKey(key)) {
                 var value2 = map2.get(key);
                 mapResult.put("  + " + key, value2);

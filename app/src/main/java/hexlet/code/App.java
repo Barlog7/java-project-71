@@ -30,7 +30,7 @@ public class App implements Callable<Integer> {
     boolean usageHelpRequested;*/
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        //System.out.println("Hello World!");
 
 /*        CommandLine commandLine = new CommandLine(new App());
         commandLine.parseArgs(args);
