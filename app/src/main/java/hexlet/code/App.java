@@ -3,7 +3,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
-import hexlet.code.Differ;
+//import hexlet.code.Differ;
 
 import java.util.concurrent.Callable;
 
@@ -14,13 +14,13 @@ import static hexlet.code.Differ.generate;
 public class App implements Callable<Integer> {
 
 
-    @Parameters(index = "0", paramLabel="filepath1", description = "path to first file")
+    @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
     String filepath1;
 
-    @Parameters(index = "1", paramLabel="filepath2", description = "path to second file")
+    @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
     String filepath2;
 
-    @Option(names = {"-f", "--format"}, paramLabel="format", description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
     String format;
 
     /*@Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
@@ -50,7 +50,8 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        generate(filepath1, filepath2);
+        String returnResult = generate(filepath1, filepath2);
+        System.out.println(returnResult);
         return null;
     }
 }

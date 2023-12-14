@@ -1,6 +1,7 @@
 plugins {
     id 'application'
     id 'java'
+    id 'checkstyle'
 }
 
 group = 'hexlet.code'
@@ -17,6 +18,7 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
     implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
     annotationProcessor 'info.picocli:picocli-codegen:4.7.5'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
 }
 
 test {
