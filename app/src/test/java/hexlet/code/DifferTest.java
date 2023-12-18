@@ -16,8 +16,8 @@ class DifferTest {
                 + "  + timeout: 20\n"
                 + "  + verbose: true\n"
                 + "}";
-        String  filePath1 = "file1.json";
-        String  filePath2 = "file2.json";
+        String  filePath1 = "/home/barlog/java-project-71/app/src/test/resources/file1.json";
+        String  filePath2 = "/home/barlog/java-project-71/app/src/test/resources/file2.json";
         var actual = generate(filePath1, filePath2);
         assertEquals(expected, actual);
     }
