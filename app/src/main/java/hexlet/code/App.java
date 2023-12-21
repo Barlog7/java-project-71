@@ -51,6 +51,7 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         String returnResult = generate(filepath1, filepath2);
+        //вывод
         System.out.println(returnResult);
         return null;
     }
