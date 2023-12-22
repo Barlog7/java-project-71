@@ -26,7 +26,7 @@ class DifferTest {
         //String  filePath2 = "/home/barlog/java-project-71/app/src/test/resources/file2.json";
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
-        var actual = generate(filePath1,filePath2 );
+        var actual = generate(filePath1, filePath2);
         assertEquals(expected, actual);
     }
 }
