@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 
 public class Utils {
@@ -11,5 +13,11 @@ public class Utils {
         }
         stringReturn.append("}");
         return stringReturn.toString();
+    }
+    public static Path getFixturePath(String fileName) {
+        /*return Paths.get("src", "test", "resources", "fixtures", fileName)
+                .toAbsolutePath().normalize();*/
+        return Paths.get("src", "test", "resources", fileName)
+                .toAbsolutePath().normalize();
     }
 }

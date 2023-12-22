@@ -41,7 +41,8 @@ public class Differ {
         if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
         }
-        Map<String, String> mapJson = mapper.readValue(new File(filePath), Map.class);
+        //Map<String, String> mapJson = mapper.readValue(new File(filePath), Map.class);
+        Map<String, String> mapJson = mapper.readValue(new File(String.valueOf(path)), Map.class);
 
         //System.out.println(mapJson);
         return mapJson;
