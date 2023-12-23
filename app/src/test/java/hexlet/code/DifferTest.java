@@ -3,9 +3,10 @@ package hexlet.code;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static hexlet.code.Differ.generate;
-import static hexlet.code.Utils.getFixturePath;
+//import static hexlet.code.Utils.getFixturePath;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DifferTest {
@@ -26,7 +27,17 @@ class DifferTest {
         //String  filePath2 = "/home/barlog/java-project-71/app/src/test/resources/file2.json";
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
+        System.out.println("expected = " + expected);
+        System.out.println("path1 =" + path1);
+        System.out.println("path2 =" + path2);
         var actual = generate(filePath1, filePath2);
+        System.out.println("actual = " + actual);
         assertEquals(expected, actual);
+    }
+    public static Path getFixturePath(String fileName) {
+        /*return Paths.get("src", "test", "resources", "fixtures", fileName)
+                .toAbsolutePath().normalize();*/
+        return Paths.get("src", "test", "resources", fileName)
+                .toAbsolutePath().normalize();
     }
 }
