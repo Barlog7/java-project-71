@@ -32,7 +32,7 @@ class DifferTest {
         System.out.println("path2 =" + path2);
         var actual = generate(filePath1, filePath2);
         System.out.println("actual = " + actual);
-        assertEquals(expected, actual);
+        assertEquals(expected, actual, "expected = " + expected + " path1 =" + path1 + " path2 =" + path2 + " actual = " + actual);
     }
     public static Path getFixturePath(String fileName) {
         /*return Paths.get("src", "test", "resources", "fixtures", fileName)
