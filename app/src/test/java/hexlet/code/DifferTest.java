@@ -44,10 +44,14 @@ class DifferTest {
                 + "  + timeout: 20\n"
                 + "  + verbose: true\n"
                 + "}";
+        //Path path1 = getFixturePath("file1.yml");
+        //Path path2 = getFixturePath("file2.yml");
         Path path1 = getFixturePath("file1.yml");
         Path path2 = getFixturePath("file2.yml");
         //String  filePath1 = "/home/barlog/java-project-71/app/src/test/resources/file1.json";
         //String  filePath2 = "/home/barlog/java-project-71/app/src/test/resources/file2.json";
+        //filepath1 = "/home/barlog/java-project-71/app/src/test/resources/file1.yml";
+        //filepath1 = "/home/barlog/java-project-71/app/src/test/resources/file2.yml";
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
         //System.out.println("expected = " + expected);
@@ -60,6 +64,9 @@ class DifferTest {
     public static Path getFixturePath(String fileName) {
         /*return Paths.get("src", "test", "resources", "fixtures", fileName)
                 .toAbsolutePath().normalize();*/
+       // Path path = Paths.get("src", "test", "resources", fileName);
+        //Path Abspath = path.toAbsolutePath();
+        //Path NormalPath = path.normalize();
         return Paths.get("src", "test", "resources", fileName)
                 .toAbsolutePath().normalize();
     }

@@ -50,6 +50,8 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
+        //filepath1 = "/home/barlog/java-project-71/app/src/test/resources/file1.yml";
+        //filepath1 = "/home/barlog/java-project-71/app/src/test/resources/file2.yml";
         String returnResult = generate(filepath1, filepath2);
         //вывод
         System.out.println(returnResult);

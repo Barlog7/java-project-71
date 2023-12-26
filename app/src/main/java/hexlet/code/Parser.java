@@ -22,13 +22,17 @@ public class Parser {
         String typeFile = "";
         if (path.getFileName().toString().contains(".yml")) {
             typeFile = "yml";
+            //System.out.println(typeFile + filePath);
             mapper = new YAMLMapper();
+
 
         } else if (path.getFileName().toString().contains(".json")) {
             typeFile = "json";
+            //System.out.println(typeFile + filePath);
         } else {
             throw new Exception("File '" + path + "' not .yml or .json type");
         }
+        //System.out.println(typeFile + filePath);
         Map<String, String> mapJson = mapper.readValue(new File(String.valueOf(path)), Map.class);
 
 
