@@ -12,6 +12,7 @@ import java.util.ArrayList;
 //import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static hexlet.code.Formater.addStartEndSign;
 import static hexlet.code.Formater.formatedText;
 
 public class Parser {
@@ -88,7 +89,8 @@ public class Parser {
         //
         var itemsSorted = itemsUnion.stream().sorted().toList();
         //System.out.println(itemsSorted);
-        StringBuilder stringReturn = new StringBuilder("{" + "\n");
+        StringBuilder stringReturn = new StringBuilder();
+        //StringBuilder stringReturn = new StringBuilder("{" + "\n");
         for (var key : itemsSorted) {
             //System.out.println(key);
             var value1 = checkNull(map1.get(key));
@@ -96,14 +98,14 @@ public class Parser {
             String formatText = "";
             if (!map1.containsKey(key)) {
                 //var value2 = map2.get(key);
-                formatText = formatedText(key, value2, "+", typeFormat);
+                formatText = formatedText(key, value2, "add", typeFormat);
                 stringReturn.append(formatText);
                 //mapResult.put("  + " + key, value2);
 
                 continue;
             } else if (!map2.containsKey(key)) {
                 //var value1 = map1.get(key);
-                formatText = formatedText(key, value1, "-", typeFormat);
+                formatText = formatedText(key, value1, "remove", typeFormat);
                 stringReturn.append(formatText);
                 //mapResult.put("  - " + key, value1);
                 continue;
@@ -112,20 +114,21 @@ public class Parser {
             //var value2 = map2.get(key);
             if (value1.equals(value2)) {
                 //mapResult.put("    " + key, value1);
-                formatText = formatedText(key, value1, " ", typeFormat);
+                formatText = formatedText(key, value1, "not change", typeFormat);
                 stringReturn.append(formatText);
             } else {
-                formatText = formatedText(key, value1, "-", typeFormat);
+                formatText = formatedText(key, value1, value2, typeFormat);
                 stringReturn.append(formatText);
-                formatText = formatedText(key, value2, "+", typeFormat);
-                stringReturn.append(formatText);
+                //formatText = formatedText(key, value2, "+", typeFormat);
+                //stringReturn.append(formatText);
                 //mapResult.put("  - " + key, value1);
                 //mapResult.put("  + " + key, value2);
             }
         }
 
         //return mapResult;
-        stringReturn.append("}");
+        //stringReturn.append("}");
+        stringReturn = addStartEndSign(stringReturn, typeFormat);
         return stringReturn.toString();
     }
 

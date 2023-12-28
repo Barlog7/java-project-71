@@ -166,4 +166,32 @@ class DifferTest {
         return Paths.get("src", "test", "resources", fileName)
                 .toAbsolutePath().normalize();
     }
+    @Test
+    public void testGenerateWithObjectsPlain() {
+        var expected = "Property 'chars2' was updated. From [complex value] to false\n"
+                + "Property 'checked' was updated. From false to true\n"
+                + "Property 'default' was updated. From null to [complex value]\n"
+                + "Property 'id' was updated. From 45 to null\n"
+                + "Property 'key1' was removed\n"
+                + "Property 'key2' was added with value: 'value2'\n"
+                + "Property 'numbers2' was updated. From [complex value] to [complex value]\n"
+                + "Property 'numbers3' was removed\n"
+                + "Property 'numbers4' was added with value: [complex value]\n"
+                + "Property 'obj1' was added with value: [complex value]\n"
+                + "Property 'setting1' was updated. From 'Some value' to 'Another value'\n"
+                + "Property 'setting2' was updated. From 200 to 300\n"
+                + "Property 'setting3' was updated. From true to 'none'";
+        Path path1 = getFixturePath("file3.json");
+        Path path2 = getFixturePath("file4.json");
+        //String  filePath1 = "/home/barlog/java-project-71/app/src/test/resources/file1.json";
+        //String  filePath2 = "/home/barlog/java-project-71/app/src/test/resources/file2.json";
+        String  filePath1 = String.valueOf(path1);
+        String  filePath2 = String.valueOf(path2);
+        //System.out.println("expected = " + expected);
+        //System.out.println("path1 =" + path1);
+        //System.out.println("path2 =" + path2);
+        var actual = generate(filePath1, filePath2, "plain");
+        //System.out.println("actual = " + actual);
+        assertEquals(expected, actual);
+    }
 }
