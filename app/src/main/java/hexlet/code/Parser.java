@@ -9,7 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+//import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static hexlet.code.Formater.formatedText;
@@ -131,7 +131,7 @@ public class Parser {
 
     public static Object checkNull(Object value) {
         if (value == null) {
-            value ="null";
+            value = "null";
         }
         return value;
     }

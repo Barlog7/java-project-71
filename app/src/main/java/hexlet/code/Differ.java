@@ -14,7 +14,7 @@ import java.util.Map;
 
 import static hexlet.code.Parser.createResult;
 import static hexlet.code.Parser.getData;
-import static hexlet.code.Utils.mapToString;
+//import static hexlet.code.Utils.mapToString;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String format) {
