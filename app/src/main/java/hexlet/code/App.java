@@ -20,7 +20,7 @@ public class App implements Callable<Integer> {
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
     String filepath2;
 
-    @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", paramLabel = "format", description = "output format [default: stylish]")
     String format;
 
     /*@Option(names = {"-V", "--version"}, versionHelp = true, description = "Print version information and exit.")
@@ -52,7 +52,7 @@ public class App implements Callable<Integer> {
     public Integer call() throws Exception {
         //filepath1 = "/home/barlog/java-project-71/app/src/test/resources/file1.yml";
         //filepath1 = "/home/barlog/java-project-71/app/src/test/resources/file2.yml";
-        String returnResult = generate(filepath1, filepath2);
+        String returnResult = generate(filepath1, filepath2, format);
         //вывод
         System.out.println(returnResult);
         return null;

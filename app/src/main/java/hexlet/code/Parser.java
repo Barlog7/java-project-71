@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static hexlet.code.Formater.formatedText;
+
 public class Parser {
     public static Map getData(String filePath) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
@@ -39,7 +41,7 @@ public class Parser {
         //System.out.println(mapJson);
         return mapJson;
     }
-    public static Map createResult(Map map1, Map map2) {
+   /* public static Map createResult(Map map1, Map map2) {
         Map mapResult = new LinkedHashMap<String, String>();
         var items1 = new ArrayList<String>(map1.keySet());
         var items2 = new ArrayList<String>(map2.keySet());
@@ -49,17 +51,25 @@ public class Parser {
         //System.out.println(itemsSorted);
         for (var key : itemsSorted) {
             //System.out.println(key);
+            var value1 = map1.get(key);
+            if (value1 ==  null) {
+                value1 = "null";
+            }
+            var value2 = map2.get(key);
+            if (value2 ==  null) {
+                value2 = "null";
+            }
             if (!map1.containsKey(key)) {
-                var value2 = map2.get(key);
+                //var value2 = map2.get(key);
                 mapResult.put("  + " + key, value2);
                 continue;
             } else if (!map2.containsKey(key)) {
-                var value1 = map1.get(key);
+                //var value1 = map1.get(key);
                 mapResult.put("  - " + key, value1);
                 continue;
             }
-            var value1 = map1.get(key);
-            var value2 = map2.get(key);
+            //var value1 = map1.get(key);
+            //var value2 = map2.get(key);
             if (value1.equals(value2)) {
                 mapResult.put("    " + key, value1);
             } else {
@@ -69,5 +79,60 @@ public class Parser {
         }
 
         return mapResult;
+    }*/
+    public static String createResult(Map map1, Map map2, String typeFormat) {
+        //Map mapResult = new LinkedHashMap<String, String>();
+        var items1 = new ArrayList<String>(map1.keySet());
+        var items2 = new ArrayList<String>(map2.keySet());
+        var itemsUnion = CollectionUtils.union(items1, items2);
+        //
+        var itemsSorted = itemsUnion.stream().sorted().toList();
+        //System.out.println(itemsSorted);
+        StringBuilder stringReturn = new StringBuilder("{" + "\n");
+        for (var key : itemsSorted) {
+            //System.out.println(key);
+            var value1 = checkNull(map1.get(key));
+            var value2 = checkNull(map2.get(key));
+            String formatText = "";
+            if (!map1.containsKey(key)) {
+                //var value2 = map2.get(key);
+                formatText = formatedText(key, value2, "+", typeFormat);
+                stringReturn.append(formatText);
+                //mapResult.put("  + " + key, value2);
+
+                continue;
+            } else if (!map2.containsKey(key)) {
+                //var value1 = map1.get(key);
+                formatText = formatedText(key, value1, "-", typeFormat);
+                stringReturn.append(formatText);
+                //mapResult.put("  - " + key, value1);
+                continue;
+            }
+            //var value1 = map1.get(key);
+            //var value2 = map2.get(key);
+            if (value1.equals(value2)) {
+                //mapResult.put("    " + key, value1);
+                formatText = formatedText(key, value1, " ", typeFormat);
+                stringReturn.append(formatText);
+            } else {
+                formatText = formatedText(key, value1, "-", typeFormat);
+                stringReturn.append(formatText);
+                formatText = formatedText(key, value2, "+", typeFormat);
+                stringReturn.append(formatText);
+                //mapResult.put("  - " + key, value1);
+                //mapResult.put("  + " + key, value2);
+            }
+        }
+
+        //return mapResult;
+        stringReturn.append("}");
+        return stringReturn.toString();
+    }
+
+    public static Object checkNull(Object value) {
+        if (value == null) {
+            value ="null";
+        }
+        return value;
     }
 }
