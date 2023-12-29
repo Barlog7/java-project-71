@@ -1,7 +1,5 @@
 package hexlet.code.formatters;
 
-//import org.apache.commons.lang3.StringUtils;
-
 public class Plain {
     public static String formatedTextSPlain(String key, Object value, String type) {
         String sFormat = "";
@@ -18,7 +16,6 @@ public class Plain {
             default:
                 sFormat = "";
         }
-            //sFormat = "  " + typeSign + " " + key + ": " + String.valueOf(value) + "\n";
         return sFormat;
     }
     public static String formatedTextSPlain(String key, Object value1, Object value2) {
@@ -32,9 +29,7 @@ public class Plain {
     }
     public static String formatingValue(Object value) {
         String returnValue = "";
-        /*if (StringUtils.isNumeric(String.valueOf(value))) {
-            returnValue = String.valueOf(value);
-        }*/
+
         if (value.equals("null")) {
             returnValue = String.valueOf(value);
         } else if (value instanceof String) {
