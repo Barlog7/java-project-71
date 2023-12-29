@@ -8,3 +8,5 @@ how it work:
 https://asciinema.org/a/gv8g07f7aG2c4eS6lmN7CA9OX
 
 https://asciinema.org/a/p9lFQD5S1jNeq0e1YvnizsG9q
+
+https://asciinema.org/a/LIw4tJteRHWA4RXR83u6P7xsQ
