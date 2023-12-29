@@ -9,11 +9,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-//import java.util.LinkedHashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static hexlet.code.Formater.addStartEndSign;
 import static hexlet.code.Formater.formatedText;
+import static hexlet.code.formatters.Json.formatToJson;
 
 public class Parser {
     public static Map getData(String filePath) throws Exception {
@@ -82,7 +83,7 @@ public class Parser {
         return mapResult;
     }*/
     public static String createResult(Map map1, Map map2, String typeFormat) {
-        //Map mapResult = new LinkedHashMap<String, String>();
+        Map mapResult = new LinkedHashMap<String, String>();
         var items1 = new ArrayList<String>(map1.keySet());
         var items2 = new ArrayList<String>(map2.keySet());
         var itemsUnion = CollectionUtils.union(items1, items2);
@@ -100,20 +101,20 @@ public class Parser {
                 //var value2 = map2.get(key);
                 formatText = formatedText(key, value2, "add", typeFormat);
                 stringReturn.append(formatText);
-                //mapResult.put("  + " + key, value2);
+                mapResult.put("  + " + key, value2);
 
                 continue;
             } else if (!map2.containsKey(key)) {
                 //var value1 = map1.get(key);
                 formatText = formatedText(key, value1, "remove", typeFormat);
                 stringReturn.append(formatText);
-                //mapResult.put("  - " + key, value1);
+                mapResult.put("  - " + key, value1);
                 continue;
             }
             //var value1 = map1.get(key);
             //var value2 = map2.get(key);
             if (value1.equals(value2)) {
-                //mapResult.put("    " + key, value1);
+                mapResult.put("    " + key, value1);
                 formatText = formatedText(key, value1, "not change", typeFormat);
                 stringReturn.append(formatText);
             } else {
@@ -121,13 +122,16 @@ public class Parser {
                 stringReturn.append(formatText);
                 //formatText = formatedText(key, value2, "+", typeFormat);
                 //stringReturn.append(formatText);
-                //mapResult.put("  - " + key, value1);
-                //mapResult.put("  + " + key, value2);
+                mapResult.put("  - " + key, value1);
+                mapResult.put("  + " + key, value2);
             }
         }
 
         //return mapResult;
         //stringReturn.append("}");
+        if (typeFormat.equals("json")) {
+            return formatToJson(mapResult);
+        }
         stringReturn = addStartEndSign(stringReturn, typeFormat);
         return stringReturn.toString();
     }

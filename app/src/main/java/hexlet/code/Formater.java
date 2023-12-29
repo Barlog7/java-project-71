@@ -23,8 +23,11 @@ public class Formater {
             case ("stylish") :
                 returnText = formatedTextStylish(key, value1, value2);
                 break;
-            default:
+            case ("plain") :
                 returnText = formatedTextSPlain(key, value1, value2);
+                break;
+            default:
+                returnText = formatedTextStylish(key, value1, value2);
         }
         return returnText;
     }
@@ -36,4 +39,5 @@ public class Formater {
         }
         return text;
     }
+
 }
