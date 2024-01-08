@@ -32,8 +32,14 @@ public class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-
-        String returnResult = generate(filepath1, filepath2, format);
+        String returnResult = "";
+        try {
+            returnResult = generate(filepath1, filepath2, format);
+        } catch (RuntimeException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //вывод
         System.out.println(returnResult);
         return null;

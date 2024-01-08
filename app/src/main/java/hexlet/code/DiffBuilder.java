@@ -1,50 +1,18 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-//import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-//import java.util.ArrayList;
-//import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-//import static hexlet.code.Formater.addStartEndSign;
-//import static hexlet.code.Formater.formatedText;
-//import static hexlet.code.formatters.Json.formatToJson;
+import static hexlet.code.Formater.addStartEndSign;
+import static hexlet.code.Formater.formatedText;
+import static hexlet.code.Parser.checkNull;
+import static hexlet.code.formatters.Json.formatToJson;
 
-public class Parser {
-    public static Map getData(String filePath) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        Path path = Paths.get(filePath).toAbsolutePath().normalize();
-        if (!Files.exists(path)) {
-            throw new Exception("File '" + path + "' does not exist");
-        }
-        String typeFile = "";
-        if (path.getFileName().toString().contains(".yml")) {
-            typeFile = "yml";
-
-            mapper = new YAMLMapper();
-
-
-        } else if (path.getFileName().toString().contains(".json")) {
-            typeFile = "json";
-
-        } else {
-            throw new Exception("File '" + path + "' not .yml or .json type");
-        }
-
-        Map<String, String> mapJson = mapper.readValue(new File(String.valueOf(path)), Map.class);
-
-
-
-        return mapJson;
-    }
-
-   /* public static String createResult(Map map1, Map map2, String typeFormat) {
+public class DiffBuilder {
+    public static String createResult(Map map1, Map map2, String typeFormat) {
         Map mapResult = new LinkedHashMap<String, String>();
         var items1 = new ArrayList<String>(map1.keySet());
         var items2 = new ArrayList<String>(map2.keySet());
@@ -86,19 +54,10 @@ public class Parser {
                 mapResult.put("  + " + key, value2);
             }
         }
-
-
         if (typeFormat.equals("json")) {
             return formatToJson(mapResult);
         }
         stringReturn = addStartEndSign(stringReturn, typeFormat);
         return stringReturn.toString();
-    }*/
-
-    public static Object checkNull(Object value) {
-        if (value == null) {
-            value = "null";
-        }
-        return value;
     }
 }

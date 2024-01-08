@@ -27,7 +27,12 @@ class DifferTest {
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
 
-        var actual = generate(filePath1, filePath2, "stylish");
+        String actual = null;
+        try {
+            actual = generate(filePath1, filePath2, "stylish");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         assertEquals(expected, actual);
     }
@@ -48,7 +53,12 @@ class DifferTest {
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
 
-        var actual = generate(filePath1, filePath2, "stylish");
+        String actual = null;
+        try {
+            actual = generate(filePath1, filePath2, "stylish");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         assertEquals(expected, actual);
     }
@@ -86,7 +96,12 @@ class DifferTest {
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
 
-        var actual = generate(filePath1, filePath2, "stylish");
+        String actual = null;
+        try {
+            actual = generate(filePath1, filePath2, "stylish");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         assertEquals(expected, actual);
     }
@@ -124,7 +139,12 @@ class DifferTest {
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
 
-        var actual = generate(filePath1, filePath2, "stylish");
+        String actual = null;
+        try {
+            actual = generate(filePath1, filePath2, "stylish");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         assertEquals(expected, actual);
     }
@@ -154,7 +174,12 @@ class DifferTest {
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
 
-        var actual = generate(filePath1, filePath2, "plain");
+        String actual = null;
+        try {
+            actual = generate(filePath1, filePath2, "plain");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         assertEquals(expected, actual);
     }
@@ -194,7 +219,12 @@ class DifferTest {
         String  filePath1 = String.valueOf(path1);
         String  filePath2 = String.valueOf(path2);
 
-        var actual = generate(filePath1, filePath2, "json");
+        String actual = null;
+        try {
+            actual = generate(filePath1, filePath2, "json");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         assertEquals(expected, actual);
         System.out.println(actual);
