@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 //import org.apache.commons.collections4.CollectionUtils;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+//import java.io.File;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
 //import java.util.ArrayList;
 //import java.util.LinkedHashMap;
 import java.util.Map;
@@ -17,10 +17,13 @@ import java.util.Map;
 //import static hexlet.code.formatters.Json.formatToJson;
 
 public class Parser {
-    public static Map getData(String filePath) throws Exception {
+    public static Map getData(String sData, String type) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
-        Path path = Paths.get(filePath).toAbsolutePath().normalize();
-        if (!Files.exists(path)) {
+        if (type.equals("yml")) {
+            mapper = new YAMLMapper();
+        }
+        //Path path = Paths.get(filePath).toAbsolutePath().normalize();
+       /* if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
         }
         String typeFile = "";
@@ -35,9 +38,9 @@ public class Parser {
 
         } else {
             throw new Exception("File '" + path + "' not .yml or .json type");
-        }
+        }*/
 
-        Map<String, String> mapJson = mapper.readValue(new File(String.valueOf(path)), Map.class);
+        Map<String, String> mapJson = mapper.readValue(sData, Map.class);
 
 
 
