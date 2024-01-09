@@ -35,8 +35,6 @@ public class App implements Callable<Integer> {
         String returnResult = "";
         try {
             returnResult = generate(filepath1, filepath2, format);
-        } catch (RuntimeException e) {
-            System.out.println(e);
         } catch (Exception e) {
             System.out.println(e);
         }
