@@ -51,18 +51,29 @@ public class Differ {
             throw new Exception("File '" + path + "' does not exist");
         }
         String typeFile = "";
-        if (path.getFileName().toString().contains(".yml")) {
+        //String type = path.getFileName().toString().substring(path.getFileName().toString().length() -)
+        String sName = path.getFileName().toString();
+        int indexDot = sName.lastIndexOf(".");
+        switch (sName.substring(indexDot)) {
+            case (".yml") :
+                typeFile = "yml";
+                break;
+            case (".json") :
+                typeFile = "json";
+                break;
+            default:
+                throw new Exception("File '" + path + "' not .yml or .json type");
+        }
+
+/*        if (sName.contains(".yml")) {
             typeFile = "yml";
 
-            //mapper = new YAMLMapper();
-
-
-        } else if (path.getFileName().toString().contains(".json")) {
+        } else if (sName.contains(".json")) {
             typeFile = "json";
 
         } else {
             throw new Exception("File '" + path + "' not .yml or .json type");
-        }
+        }*/
         return typeFile;
     }
 
