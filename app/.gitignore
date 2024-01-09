@@ -9,6 +9,8 @@ build/
 .idea
 **/.idea
 .idea/
+!**/src/main/**/out/
+!**/src/test/**/out/
 ### Eclipse ###
 .apt_generated
 .classpath
