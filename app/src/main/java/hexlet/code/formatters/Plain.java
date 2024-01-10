@@ -1,23 +1,59 @@
 package hexlet.code.formatters;
 
+import java.util.Map;
+
 public class Plain {
-    public static String formatedTextSPlain(String key, Object value, String type) {
-        String sFormat = "";
-        String typeSign = "";
-        switch (type) {
-            case ("add") :
-                sFormat = "Property '" + key + "' was added with value: " + formatingValue(value) + "\n";
-                //sFormat = "  " + typeSign + " " + key + ": " + String.valueOf(value) + "\n";
-                break;
-            case ("remove") :
-                sFormat = "Property '" + key + "' was removed" + "\n";
-                //typeSign = "-";
-                break;
-            default:
-                sFormat = "";
+
+    public static String render(Map<String, String> map) {
+        StringBuilder text = new StringBuilder();
+
+        var entries = map.entrySet();
+        for (var entry : entries) {
+            //text.append( entry.getKey() + ": " + String.valueOf(entry.getValue()) + "\n");
+            String formatTextRow = "";
+            String keyStatus = entry.getKey().substring(0, 4);
+            String keyText = entry.getKey().substring(4);
+            //String value1 = entry.getValue();
+            String codeOperation = "";
+            if (keyStatus.equals("  + ") && !map.containsKey("  - " + keyText)) {
+                codeOperation = "add";
+            } else if ((keyStatus.equals("  + ") && map.containsKey("  - " + keyText))) {
+                codeOperation = "change";
+            } else if ((keyStatus.equals("  - ") && !map.containsKey("  + " + keyText))) {
+                codeOperation = "remove";
+            } else {
+                codeOperation = "none";
+            }
+            switch (codeOperation) {
+                case ("add") :
+                    formatTextRow = "Property '"
+                            + keyText
+                            + "' was added with value: "
+                            + formatingValue(entry.getValue())
+                            + "\n";
+                    break;
+                case ("remove") :
+                    formatTextRow = "Property '" + keyText + "' was removed" + "\n";
+                    break;
+                case ("change") :
+
+                    formatTextRow = "Property '"
+                            + keyText
+                            + "' was updated. From "
+                            + formatingValue(map.get("  - " + keyText))
+                            + " to " + formatingValue(entry.getValue()) + "\n";
+                    break;
+                default :
+                    break;
+            }
+            text.append(formatTextRow);
         }
-        return sFormat;
+
+        text = deteleEndRow(text);
+        return text.toString();
     }
+
+
     public static String formatedTextSPlain(String key, Object value1, Object value2) {
         String sFormat = "";
         sFormat = "Property '"
@@ -42,7 +78,9 @@ public class Plain {
         return returnValue;
     }
     public static StringBuilder deteleEndRow(StringBuilder text) {
-        text = text.deleteCharAt(text.length() - 1);
+        if (text.length() > 0) {
+            text = text.deleteCharAt(text.length() - 1);
+        }
         return text;
     }
 }

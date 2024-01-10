@@ -1,7 +1,24 @@
 package hexlet.code.formatters;
 
+import java.util.Map;
+
 public class Stylish {
-    public static String formatedTextStylish(String key, Object value, String type) {
+
+    public static String render(Map<String, String> map) {
+        StringBuilder text = new StringBuilder();
+        text.append("{" + "\n");
+        //text.insert(0, "{" + "\n");
+
+        var entries = map.entrySet();
+        for (var entry : entries) {
+            text.append(entry.getKey() + ": " + String.valueOf(entry.getValue()) + "\n");
+        }
+
+        text.append("}");
+        return text.toString();
+    }
+
+    /*public static String formatedTextStylish(String key, Object value, String type) {
         String sFormat = "";
         String typeSign = "";
         switch (type) {
@@ -27,5 +44,5 @@ public class Stylish {
         text.insert(0, "{" + "\n");
         text.append("}");
         return text;
-    }
+    }*/
 }
