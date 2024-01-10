@@ -6,13 +6,13 @@ public class Plain {
 
     public static String render(Map<String, String> map) {
         StringBuilder text = new StringBuilder();
-
+        final int pozition = 4;
         var entries = map.entrySet();
         for (var entry : entries) {
             //text.append( entry.getKey() + ": " + String.valueOf(entry.getValue()) + "\n");
             String formatTextRow = "";
-            String keyStatus = entry.getKey().substring(0, 4);
-            String keyText = entry.getKey().substring(4);
+            String keyStatus = entry.getKey().substring(0, pozition);
+            String keyText = entry.getKey().substring(pozition);
             //String value1 = entry.getValue();
             String codeOperation = "";
             if (keyStatus.equals("  + ") && !map.containsKey("  - " + keyText)) {
