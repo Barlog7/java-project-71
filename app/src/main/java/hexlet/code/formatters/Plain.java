@@ -2,6 +2,12 @@ package hexlet.code.formatters;
 
 import java.util.Map;
 
+import static hexlet.code.DiffBuilder.ADD;
+import static hexlet.code.DiffBuilder.DELETE;
+import static hexlet.code.DiffBuilder.CHANGE_FROM;
+import static hexlet.code.DiffBuilder.CHANGE_TO;
+
+
 public class Plain {
 
     public static String render(Map<String, String> map) {
@@ -10,37 +16,28 @@ public class Plain {
         var entries = map.entrySet();
         for (var entry : entries) {
             //text.append( entry.getKey() + ": " + String.valueOf(entry.getValue()) + "\n");
+            int index = entry.getKey().indexOf("#");
             String formatTextRow = "";
-            String keyStatus = entry.getKey().substring(0, pozition);
-            String keyText = entry.getKey().substring(pozition);
-            //String value1 = entry.getValue();
-            String codeOperation = "";
-            if (keyStatus.equals("  + ") && !map.containsKey("  - " + keyText)) {
-                codeOperation = "add";
-            } else if ((keyStatus.equals("  + ") && map.containsKey("  - " + keyText))) {
-                codeOperation = "change";
-            } else if ((keyStatus.equals("  - ") && !map.containsKey("  + " + keyText))) {
-                codeOperation = "remove";
-            } else {
-                codeOperation = "none";
-            }
-            switch (codeOperation) {
-                case ("add") :
+            String keyStatus = entry.getKey().substring(0, index + 1);
+            String keyText = entry.getKey().substring(index + 1);
+
+            switch (keyStatus) {
+                case (ADD) :
                     formatTextRow = "Property '"
                             + keyText
                             + "' was added with value: "
                             + formatingValue(entry.getValue())
                             + "\n";
                     break;
-                case ("remove") :
+                case (DELETE) :
                     formatTextRow = "Property '" + keyText + "' was removed" + "\n";
                     break;
-                case ("change") :
+                case (CHANGE_TO) :
 
                     formatTextRow = "Property '"
                             + keyText
                             + "' was updated. From "
-                            + formatingValue(map.get("  - " + keyText))
+                            + formatingValue(map.get(CHANGE_FROM + keyText))
                             + " to " + formatingValue(entry.getValue()) + "\n";
                     break;
                 default :

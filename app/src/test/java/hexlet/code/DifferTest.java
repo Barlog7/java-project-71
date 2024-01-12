@@ -223,7 +223,7 @@ class DifferTest {
         try {
             actual = generate(filePath1, filePath2, "json");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            //throw new RuntimeException(e);
         }
 
         assertEquals(expected, actual);

@@ -2,47 +2,51 @@ package hexlet.code.formatters;
 
 import java.util.Map;
 
+//import static hexlet.code.DiffBuilder.*;
+import static hexlet.code.DiffBuilder.ADD;
+import static hexlet.code.DiffBuilder.DELETE;
+import static hexlet.code.DiffBuilder.CHANGE_TO;
+import static hexlet.code.DiffBuilder.CHANGE_FROM;
+import static hexlet.code.DiffBuilder.NOT_CHANGE;
+
 public class Stylish {
 
+    static final int move = 1;
     public static String render(Map<String, String> map) {
         StringBuilder text = new StringBuilder();
         text.append("{" + "\n");
-        //text.insert(0, "{" + "\n");
 
         var entries = map.entrySet();
         for (var entry : entries) {
-            text.append(entry.getKey() + ": " + String.valueOf(entry.getValue()) + "\n");
+            text.append(formatKeyStatus(entry.getKey()) + ": " + String.valueOf(entry.getValue()) + "\n");
         }
 
         text.append("}");
         return text.toString();
     }
 
-    /*public static String formatedTextStylish(String key, Object value, String type) {
-        String sFormat = "";
-        String typeSign = "";
-        switch (type) {
-            case ("add") :
-                typeSign = "+";
+    public static String formatKeyStatus(String key) {
+        int index = key.indexOf("#");
+        String returnText = "";
+        String keyOperation = key.substring(0, index + move);
+        switch (keyOperation) {
+            case (ADD) :
+                returnText = "  + ";
                 break;
-            case ("remove") :
-                typeSign = "-";
+            case (DELETE) :
+                returnText = "  - ";
                 break;
+            case (NOT_CHANGE) :
+                returnText = "    ";
+                break;
+            case (CHANGE_FROM) :
+                returnText = "  - ";
+                break;
+            case (CHANGE_TO) :
+                returnText = "  + ";
             default:
-                typeSign = " ";
         }
-        sFormat = "  " + typeSign + " " + key + ": " + String.valueOf(value) + "\n";
-        return sFormat;
+        return returnText + key.substring(index + move);
     }
-    public static String formatedTextStylish(String key, Object value1, Object value2) {
-        String sFormat = "";
-        sFormat = "  " + "-" + " " + key + ": " + String.valueOf(value1) + "\n"
-                + "  " + "+" + " " + key + ": " + String.valueOf(value2) + "\n";
-        return sFormat;
-    }
-    public static StringBuilder bulidStartEndSign(StringBuilder text) {
-        text.insert(0, "{" + "\n");
-        text.append("}");
-        return text;
-    }*/
+
 }

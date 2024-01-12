@@ -31,9 +31,10 @@ public class Differ {
         mapSecondFile = getData(content2, typeFile2);
 
 
-        String returnString = createResult(mapFirstFile, mapSecondFile, format);
+        Map resultMap = createResult(mapFirstFile, mapSecondFile);
+        String stringReturn = Formater.render(resultMap, format);
 
-        return  returnString;
+        return  stringReturn;
     }
 
     public static String generate(String filePath1, String filePath2) throws Exception {
