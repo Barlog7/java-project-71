@@ -11,7 +11,7 @@ import static hexlet.code.DiffBuilder.NOT_CHANGE;
 
 public class Stylish {
 
-    static final int move = 1;
+    static final int MOVE = 1;
     public static String render(Map<String, String> map) {
         StringBuilder text = new StringBuilder();
         text.append("{" + "\n");
@@ -28,7 +28,7 @@ public class Stylish {
     public static String formatKeyStatus(String key) {
         int index = key.indexOf("#");
         String returnText = "";
-        String keyOperation = key.substring(0, index + move);
+        String keyOperation = key.substring(0, index + MOVE);
         switch (keyOperation) {
             case (ADD) :
                 returnText = "  + ";
@@ -46,7 +46,7 @@ public class Stylish {
                 returnText = "  + ";
             default:
         }
-        return returnText + key.substring(index + move);
+        return returnText + key.substring(index + MOVE);
     }
 
 }
