@@ -186,6 +186,34 @@ class DifferTest {
     @Test
     public void testGenerateWithObjectsJson() {
         var expected = "{\n"
+                + "  \"UNCHANGED#chars1\" : [ \"a\", \"b\", \"c\" ],\n"
+                + "  \"CHANGED FROM#chars2\" : [ \"d\", \"e\", \"f\" ],\n"
+                + "  \"CHANGED TO#chars2\" : false,\n"
+                + "  \"CHANGED FROM#checked\" : false,\n"
+                + "  \"CHANGED TO#checked\" : true,\n"
+                + "  \"CHANGED FROM#default\" : \"null\",\n"
+                + "  \"CHANGED TO#default\" : [ \"value1\", \"value2\" ],\n"
+                + "  \"CHANGED FROM#id\" : 45,\n"
+                + "  \"CHANGED TO#id\" : \"null\",\n"
+                + "  \"DELETED#key1\" : \"value1\",\n"
+                + "  \"ADDED#key2\" : \"value2\",\n"
+                + "  \"UNCHANGED#numbers1\" : [ 1, 2, 3, 4 ],\n"
+                + "  \"CHANGED FROM#numbers2\" : [ 2, 3, 4, 5 ],\n"
+                + "  \"CHANGED TO#numbers2\" : [ 22, 33, 44, 55 ],\n"
+                + "  \"DELETED#numbers3\" : [ 3, 4, 5 ],\n"
+                + "  \"ADDED#numbers4\" : [ 4, 5, 6 ],\n"
+                + "  \"ADDED#obj1\" : {\n"
+                + "    \"nestedKey\" : \"value\",\n"
+                + "    \"isNested\" : true\n"
+                + "  },\n"
+                + "  \"CHANGED FROM#setting1\" : \"Some value\",\n"
+                + "  \"CHANGED TO#setting1\" : \"Another value\",\n"
+                + "  \"CHANGED FROM#setting2\" : 200,\n"
+                + "  \"CHANGED TO#setting2\" : 300,\n"
+                + "  \"CHANGED FROM#setting3\" : true,\n"
+                + "  \"CHANGED TO#setting3\" : \"none\"\n"
+                + "}";
+       /* var expected = "{\n"
                 + "  \"    chars1\" : [ \"a\", \"b\", \"c\" ],\n"
                 + "  \"  - chars2\" : [ \"d\", \"e\", \"f\" ],\n"
                 + "  \"  + chars2\" : false,\n"
@@ -212,7 +240,7 @@ class DifferTest {
                 + "  \"  + setting2\" : 300,\n"
                 + "  \"  - setting3\" : true,\n"
                 + "  \"  + setting3\" : \"none\"\n"
-                + "}";
+                + "}";*/
         Path path1 = getFixturePath("file3.json");
         Path path2 = getFixturePath("file4.json");
 
